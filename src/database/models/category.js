@@ -1,10 +1,10 @@
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('Category', {
+  const Category = sequelize.define('Category', {
     id: DataTypes.INTEGER,
     name: DataTypes.STRING,
   });
 
-  return User;
+  return Category;
 };
 
 // SOURCE 2
