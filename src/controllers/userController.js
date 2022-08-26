@@ -5,7 +5,7 @@ const { userService } = require('../services/userService');
 // Erro no teste: throw Error('Seu `token` não consegue ser verificado a partir do segredo da variável de ambiente `JWT_SECRET`')
 
 const { JWT_SECRET } = process.env;
-console.log(process.env);
+// console.log(process.env);
 
 const userController = {
 
@@ -31,29 +31,27 @@ const userController = {
   }
 },
 
-// createUser: async (req, res) => {
-//   try {
-//   const { email } = req.body;
+createUser: async (req, res) => {
+  try {
+  const { displayName, email, password, image } = req.body;
 
-//   const result = await userService.createToken({ email });
+  const result = await userService.createUser({ displayName, email, password, image });
 
-//   if (result.email !== email) {
-//     return res
-//       .status(409)
-//       .json({ message: 'User already registered' });
-//   }
+  if (result === true) {
+    return res.status(409).json({ message: 'User already registered' });
+  }
 
-//   const jwtConfig = {
-//     expiresIn: '1d',
-//     algorithm: 'HS256',
-//   };
+  const jwtConfig = {
+    expiresIn: '1d',
+    algorithm: 'HS256',
+  };
 
-//   const token = jwt.sign({ data: result }, JWT_SECRET, jwtConfig);
-//   res.status(201).json({ token });
-// } catch (err) {
-//   return res.status(500).json({ message: 'Erro interno', error: err.message });
-// }
-// },
+  const token = jwt.sign({ data: result }, JWT_SECRET, jwtConfig);
+  res.status(201).json({ token });
+} catch (err) {
+  return res.status(500).json({ message: 'Erro interno', error: err.message });
+}
+},
 };
 
 module.exports = { 
