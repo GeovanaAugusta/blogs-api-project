@@ -48,8 +48,8 @@ createUser: async (req, res) => {
 
   const token = jwt.sign({ data: result }, JWT_SECRET, jwtConfig);
   res.status(201).json({ token });
-} catch (err) {
-  return res.status(500).json({ message: 'Erro interno', error: err.message });
+} catch (error) {
+  return res.status(500).json({ message: 'Erro interno', error: error.message });
 }
 },
 };
