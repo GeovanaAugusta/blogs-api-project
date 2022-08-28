@@ -27,6 +27,15 @@ const categoriesController = {
     return res.status(500).json({ message: 'Erro interno', error: error.message });
   }
 },
+
+getAll: async (_req, res) => {
+  try {
+  const result = await categoriesService.getAll();
+  res.status(200).json(result);
+} catch (error) {
+  return res.status(500).json({ message: 'Erro interno', error: error.message });
+}
+},
 };
 
 module.exports = { 

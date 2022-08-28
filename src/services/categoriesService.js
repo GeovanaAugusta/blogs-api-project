@@ -10,6 +10,14 @@ const categoriesService = {
     console.log(result); 
     return result;
   },
+
+  getAll: async () => {
+    const result = await Category.findAll();
+    if (!result) return null;
+    console.log(result); 
+    return result; 
+  },
+
 };
 
 module.exports = {
