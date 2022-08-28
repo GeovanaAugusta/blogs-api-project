@@ -52,6 +52,16 @@ createUser: async (req, res) => {
   return res.status(500).json({ message: 'Erro interno', error: error.message });
 }
 },
+
+getAll: async (_req, res) => {
+  try {
+  const result = await userService.getAll();
+  res.status(200).json(result);
+} catch (error) {
+  return res.status(500).json({ message: 'Erro interno', error: error.message });
+}
+},
+
 };
 
 module.exports = { 
@@ -61,3 +71,6 @@ module.exports = {
 // SOURCE 3
 // https://app.betrybe.com/course/back-end/nodejs-orm-autenticacao/jwt-json-web-token/acf1c24f-d531-4cf0-be9b-2384e37799d7/conteudos/d22aa12a-a9fd-448f-865a-ec8de7f521e6/implementando-jwt/b81401e2-ade1-4d90-94b9-e6d971915d36?use_case=side_bar
 // Dia 3 - nodejs-jwt-base-project
+
+// SOURCE 5
+// Dia 3 - nodejs-jwt-base-project - arquivo posts do controllers

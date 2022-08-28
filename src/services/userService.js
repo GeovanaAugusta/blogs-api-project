@@ -5,7 +5,7 @@ const userService = {
   createToken: async ({ email }) => {
     const result = await User.findOne({ where: { email } });
     if (!result) return null;
-    console.log(result); 
+    // console.log(result); 
     return result;
   },
 
@@ -14,8 +14,15 @@ const userService = {
     if (checkEmail) return true;
     const result = await User.create({ displayName, email, password, image });
     if (!result) return null;
-    console.log(result); 
+    // console.log(result); 
     return result;
+  },
+
+  getAll: async () => {
+    const result = await User.findAll({ attributes: { exclude: 'password' } });
+    if (!result) return null;
+    console.log(result); 
+    return result; 
   },
 };
 
@@ -25,3 +32,7 @@ userService,
 
 // SOURCE 3
 // Dia 3 - nodejs-jwt-base-project
+
+// SOURCE 5
+// Dia 3 - nodejs-jwt-base-project - arquivo posts do controllers
+// exclude porque no objeto requerido não tem a senha
