@@ -24,6 +24,13 @@ const userService = {
     console.log(result); 
     return result; 
   },
+
+  getById: async (id) => {
+    const result = await User.findOne({ where: { id }, attributes: { exclude: 'password' } });
+    // if (!result) return null;
+    console.log(result); 
+    return result; 
+  },
 };
 
 module.exports = {
@@ -36,3 +43,6 @@ userService,
 // SOURCE 5
 // Dia 3 - nodejs-jwt-base-project - arquivo posts do controllers
 // exclude porque no objeto requerido não tem a senha
+
+// SOURCE 6
+// Dia 2 - rel-1-1 - arquivo index
