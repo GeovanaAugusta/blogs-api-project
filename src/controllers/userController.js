@@ -9,11 +9,11 @@ const { JWT_SECRET } = process.env;
 
 const userController = {
 
-  createToken: async (req, res) => {
+  createLogin: async (req, res) => {
     try {
     const { email, password } = req.body;
 
-    const result = await userService.createToken({ email });
+    const result = await userService.createLogin({ email });
 
     if (!result || result.password !== password) {
       return res.status(400).json({ message: 'Invalid fields' });

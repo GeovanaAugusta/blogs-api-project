@@ -2,7 +2,7 @@ const { User } = require('../database/models');
 
 const userService = {
   
-  createToken: async ({ email }) => {
+  createLogin: async ({ email }) => {
     const result = await User.findOne({ where: { email } });
     if (!result) return null;
     // console.log(result); 
