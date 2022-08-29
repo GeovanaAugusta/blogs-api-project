@@ -1,25 +1,32 @@
-const { BlogPost, sequelize, Category } = require('../database/models');
+const { BlogPost, sequelize, PostCategory, Category } = require('../database/models');
 
 const postService = {
 
   createPost: async (body, id) => {
-    // console.log('id', id);
-    // Só chega categoryIds do body
+    console.log('categoryIds', body.categoryIds);
     // Verificar primeiro se a categoria existe 
     const { rows } = await Category.findAndCountAll({ where: { id: body.categoryIds } });
     // console.log('rows', rows.length, 'categoryIds', body.categoryIds.length);
+
     if (rows.length !== body.categoryIds.length) return false;
     // Criar de fato novo blog post
-    await sequelize.transaction(async (transaction) => {
-      console.log(typeof id);
+    const result = await sequelize.transaction(async (transaction) => {
+      // console.log(typeof id);
       const create = await BlogPost.create({ title: body.title, 
         content: body.content,
         userId: id },  
     { transaction });
-    console.log('create', create);
-        });
-    },
-  };
+    // console.log('create', create);
+  const infos = body.categoryIds.map((category) => ({
+    postId: create.dataValues.id, categoryId: category,
+  }));
+  await PostCategory.bulkCreate(infos, { transaction });
+    return create.dataValues;
+});
+      // console.log('result', result);
+      return result;
+  },
+};
 
 module.exports = {
 postService, 
