@@ -19,9 +19,8 @@ const categoriesController = {
       expiresIn: '1d',
       algorithm: 'HS256',
     };
-  
-    const token = jwt.sign({ data: result }, JWT_SECRET, jwtConfig);
-    console.log(token);
+
+    jwt.sign({ data: result }, JWT_SECRET, jwtConfig);
     res.status(201).json(result);
   } catch (error) {
     return res.status(500).json({ message: 'Erro interno', error: error.message });
