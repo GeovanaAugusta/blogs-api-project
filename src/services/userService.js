@@ -27,7 +27,14 @@ const userService = {
 
   getById: async (id) => {
     const result = await User.findOne({ where: { id }, attributes: { exclude: 'password' } });
-    // if (!result) return null;
+    if (!result) return null;
+    // console.log(result); 
+    return result; 
+  },
+
+  remove: async (userId) => {
+    const result = await User.destroy({ where: { id: userId } });
+    if (!result) return null;
     // console.log(result); 
     return result; 
   },
@@ -46,3 +53,6 @@ userService,
 
 // SOURCE 6
 // Dia 2 - rel-1-1 - arquivo index
+
+// SOURCE 17
+// Dia 01 - ex-prat (books) 

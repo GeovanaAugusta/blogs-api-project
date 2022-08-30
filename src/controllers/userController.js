@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { userService } = require('../services/userService');
 
+const message = 'Erro interno';
 // const secret = 'seusecretdetoken';
 // Erro no teste: throw Error('Seu `token` não consegue ser verificado a partir do segredo da variável de ambiente `JWT_SECRET`')
 
@@ -27,7 +28,7 @@ const userController = {
     const token = jwt.sign({ data: result }, JWT_SECRET, jwtConfig);
     res.status(200).json({ token });
   } catch (error) {
-    return res.status(500).json({ message: 'Erro interno', error: error.message });
+    return res.status(500).json({ message, error: error.message });
   }
 },
 
@@ -49,7 +50,7 @@ createUser: async (req, res) => {
   const token = jwt.sign({ data: result }, JWT_SECRET, jwtConfig);
   res.status(201).json({ token });
 } catch (error) {
-  return res.status(500).json({ message: 'Erro interno', error: error.message });
+  return res.status(500).json({ message, error: error.message });
 }
 },
 
@@ -58,7 +59,7 @@ getAll: async (_req, res) => {
   const result = await userService.getAll();
   res.status(200).json(result);
 } catch (error) {
-  return res.status(500).json({ message: 'Erro interno', error: error.message });
+  return res.status(500).json({ message, error: error.message });
 }
 },
 
@@ -69,10 +70,21 @@ getById: async (req, res) => {
   if (!result) return res.status(404).json({ message: 'User does not exist' });
   res.status(200).json(result);
 } catch (error) {
-  return res.status(500).json({ message: 'Erro interno', error: error.message });
+  return res.status(500).json({ message, error: error.message });
 }
 },
 
+remove: async (req, res) => {
+  try {
+    const userId = req.user.data.id;
+    // console.log(userId);
+    await userService.remove(userId);
+    return res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message, error: error.message });
+  }
+},
 };
 
 module.exports = { 
