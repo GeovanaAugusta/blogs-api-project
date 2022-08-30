@@ -46,7 +46,27 @@ const postService = {
     ], 
      });
     if (!result) return null;
-    console.log(result); 
+    // console.log(result); 
+    return result; 
+  },
+
+  update: async ({ title, content }, id, userId) => {
+    // console.log(('body', title, content));
+    // console.log('userId service', userId);
+    const verifyAuthorization = await BlogPost.findOne({ where: { id } });
+    // console.log('verifyAuthorization', verifyAuthorization.dataValues.userId, 
+    // 'userId', userId);
+    if (verifyAuthorization.dataValues.userId !== userId) return false;
+
+    const getObjectId = await postService.getById(id);
+    const result = await getObjectId.update(
+      { 
+        title, 
+        content, 
+      }, 
+      { where: { id } },
+    );
+    // console.log('update', result); 
     return result; 
   },
 };
@@ -62,3 +82,5 @@ postService,
 // https://app.betrybe.com/course/back-end/nodejs-orm-autenticacao/orm-associations/043e2e8a-c28e-4b95-a949-b7c43221ca8d/conteudos/82c3bd70-4da0-4a85-bf56-cce8d3f8c186/relacionamentos-nn/c8438dd6-a43d-42fe-aa52-66baa9ca23c3?use_case=side_bar
 // SOURCE 14
 // https://app.betrybe.com/course/back-end/nodejs-orm-autenticacao/orm-associations/043e2e8a-c28e-4b95-a949-b7c43221ca8d/conteudos/82c3bd70-4da0-4a85-bf56-cce8d3f8c186/relacionamentos-nn/c8438dd6-a43d-42fe-aa52-66baa9ca23c3?use_case=side_bar
+// SOURCE 15
+// Dia 01 - ex-prat (books - update) 

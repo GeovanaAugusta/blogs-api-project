@@ -32,9 +32,35 @@ getAll: async (req, res) => {
 getById: async (req, res) => {
   try {
   const { id } = req.params;
+
   const result = await postService.getById(id);
   if (!result) return res.status(404).json({ message: 'Post does not exist' });
   res.status(200).json(result);
+} catch (error) {
+  return res.status(500).json({ message: 'Erro interno', error: error.message });
+}
+},
+
+update: async (req, res) => {
+  try {
+  // const { body } = req;
+  // console.log(body);
+  // Assim não chega
+
+   const { title, content } = req.body;
+  const { id } = req.params;
+  const userId = req.user.data.id;
+  // console.log(req.user);
+  // console.log('userId', userId);
+  // console.log('id', typeof id);
+
+  const result = await postService.update({ title, content }, id, userId);
+
+  // console.log('result con', result);
+  if (!result) {
+    return res.status(401).json({ message: 'Unauthorized user' });
+  }
+  return res.status(200).json(result);
 } catch (error) {
   return res.status(500).json({ message: 'Erro interno', error: error.message });
 }

@@ -21,14 +21,14 @@ const userService = {
   getAll: async () => {
     const result = await User.findAll({ attributes: { exclude: 'password' } });
     if (!result) return null;
-    console.log(result); 
+    // console.log(result); 
     return result; 
   },
 
   getById: async (id) => {
     const result = await User.findOne({ where: { id }, attributes: { exclude: 'password' } });
     // if (!result) return null;
-    console.log(result); 
+    // console.log(result); 
     return result; 
   },
 };
