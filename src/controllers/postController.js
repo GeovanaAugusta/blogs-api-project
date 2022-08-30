@@ -86,6 +86,22 @@ remove: async (req, res) => {
   }
 },
 
+search: async (req, res) => {
+  try {
+    const { q } = req.query;
+    // console.log('query', q);
+
+    const result = await postService.search(q);
+    // console.log('controller', result);
+
+    if (!result) return [];
+    return res.status(200).json(result);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message, error: error.message });
+  }
+},
+
 };
 
 module.exports = { 

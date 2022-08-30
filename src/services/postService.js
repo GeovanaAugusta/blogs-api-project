@@ -1,4 +1,7 @@
-const { BlogPost, sequelize, PostCategory, Category, User } = require('../database/models');
+const { BlogPost, sequelize, PostCategory, 
+  Category, User, Sequelize } = require('../database/models');
+
+const { Op } = Sequelize;
 
 const postService = {
 
@@ -81,7 +84,26 @@ const postService = {
   
     return result;
   },
-  
+
+  search: async (q) => {
+    const result = BlogPost.findAll({ where: { 
+      [Op.or]: [
+        {
+          title: { [Op.like]: `%${q}%` } },
+        {
+          content: { [Op.like]: `%${q}%` } },
+      ],
+    },
+      include: [
+        { model: User, as: 'user', attributes: { exclude: ['password'] } }, 
+        { model: Category, as: 'categories', through: { attributes: [] } },
+      ], 
+     });
+    //  console.log(result);
+    if (!result) return [];
+    return result;
+  },
+
 };
 
 module.exports = {
@@ -100,3 +122,7 @@ postService,
 
 // SOURCE 15, 16
 // Dia 01 - ex-prat (books) 
+
+// SOURCE 17
+// https://sequelize.org/docs/v6/core-concepts/model-querying-basics/ 
+// Logical combinations with operators
