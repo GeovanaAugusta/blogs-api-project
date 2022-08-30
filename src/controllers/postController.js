@@ -1,5 +1,7 @@
 const { postService } = require('../services/postService');
 
+const message = 'Erro interno';
+
 const postController = {
 
   createPost: async (req, res) => {
@@ -62,8 +64,26 @@ update: async (req, res) => {
   }
   return res.status(200).json(result);
 } catch (error) {
-  return res.status(500).json({ message: 'Erro interno', error: error.message });
+  return res.status(500).json({ message, error: error.message });
 }
+},
+
+remove: async (req, res) => {
+  try {
+    const { id } = req.params;
+    const userId = req.user.data.id;
+    const checkIfIdExists = await postService.getById(id);
+    // console.log(checkIfIdExists);
+
+    const result = await postService.remove(id, userId);
+    // console.log('controller', result);
+    if (!checkIfIdExists) return res.status(404).json({ message: 'Post does not exist' });
+    if (!result) return res.status(401).json({ message: 'Unauthorized user' });
+    return res.status(204).end();
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message, error: error.message });
+  }
 },
 
 };

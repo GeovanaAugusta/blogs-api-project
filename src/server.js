@@ -28,5 +28,7 @@ app.post('/post', validationToken, validationPost.validatePost, postController.c
 app.get('/post', validationToken, postController.getAll);
 app.get('/post/:id', validationToken, postController.getById);
 app.put('/post/:id', validationToken, validationPost.validatePost, postController.update);
+app.delete('/post/:id', validationToken, postController.remove);
+// app.delete('/user/:id', validationToken, userController.remove);
 
 app.listen(port, () => console.log('ouvindo porta', port));
