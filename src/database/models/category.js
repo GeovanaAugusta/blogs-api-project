@@ -10,6 +10,3 @@ module.exports = (sequelize, DataTypes) => {
 
   return Category;
 };
-
-// SOURCE 2
-// Dia 01 - ex-prat (books) e app-with-sequelize

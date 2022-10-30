@@ -5,7 +5,7 @@ const { JWT_SECRET } = process.env;
 
 module.exports = async (req, res, next) => {
   const token = req.headers.authorization;
-  // console.log(token);
+
   if (!token) {
    return res.status(401).json({ message: 'Token not found' });
   }
@@ -17,6 +17,3 @@ module.exports = async (req, res, next) => {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }
 };
-
-// SOURCE 5
-// Dia 3 - hello-jwt - arquivo auth do middlewares

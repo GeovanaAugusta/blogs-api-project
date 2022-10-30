@@ -11,8 +11,7 @@ module.exports = (sequelize, DataTypes) => {
 
   PostCategory.associate = (models) => {
     models.Category.belongsToMany(models.BlogPost, {
-      through: PostCategory,
-      // A maneira que se conecta com o PostCategory, através de..., como tabela de associação
+      through: PostCategory, 
       as: 'blogPosts',
       foreignKey: 'postId',
       otherKey: 'categoryId',
@@ -20,8 +19,7 @@ module.exports = (sequelize, DataTypes) => {
 
     models.BlogPost.belongsToMany(models.Category, {
       through: PostCategory,
-      as: 'categories',
-      // Nome da relação
+      as: 'categories',  
       foreignKey: 'categoryId',
       otherKey: 'postId',
     });
@@ -30,6 +28,3 @@ module.exports = (sequelize, DataTypes) => {
   return PostCategory;
 };
 
-// SOURCE
-// Mentoria Luá 25/08 https://trybecourse.slack.com/archives/C02TH6V3MC5/p1661448639660799?thread_ts=1660048163.045249&cid=C02TH6V3MC5
-// https://github.com/luacomacento/friends-api/blob/friends-dev/src/database/models/CharacterEpisode.js

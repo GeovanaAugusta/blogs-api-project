@@ -2,7 +2,6 @@ const jwt = require('jsonwebtoken');
 const { categoriesService } = require('../services/categoriesService');
 
 const { JWT_SECRET } = process.env;
-// console.log(process.env);
 
 const categoriesController = {
 

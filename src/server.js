@@ -9,10 +9,8 @@ const { categoriesController } = require('./controllers/categoriesController');
 const { postController } = require('./controllers/postController');
 const { validationPost } = require('./middlewares/post.validation');
 
-// não remova a variável `API_PORT` ou o `listen`
 const port = process.env.API_PORT || 3000;
 
-// não remova esse endpoint
 app.get('/', (_request, response) => {
   response.send();
 });

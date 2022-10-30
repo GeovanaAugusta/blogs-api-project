@@ -2,11 +2,8 @@ const jwt = require('jsonwebtoken');
 const { userService } = require('../services/userService');
 
 const message = 'Erro interno';
-// const secret = 'seusecretdetoken';
-// Erro no teste: throw Error('Seu `token` não consegue ser verificado a partir do segredo da variável de ambiente `JWT_SECRET`')
 
 const { JWT_SECRET } = process.env;
-// console.log(process.env);
 
 const userController = {
 
@@ -77,7 +74,7 @@ getById: async (req, res) => {
 remove: async (req, res) => {
   try {
     const userId = req.user.data.id;
-    // console.log(userId);
+   
     await userService.remove(userId);
     return res.status(204).end();
   } catch (error) {
@@ -90,10 +87,3 @@ remove: async (req, res) => {
 module.exports = { 
   userController,
  };
-
-// SOURCE 3
-// https://app.betrybe.com/course/back-end/nodejs-orm-autenticacao/jwt-json-web-token/acf1c24f-d531-4cf0-be9b-2384e37799d7/conteudos/d22aa12a-a9fd-448f-865a-ec8de7f521e6/implementando-jwt/b81401e2-ade1-4d90-94b9-e6d971915d36?use_case=side_bar
-// Dia 3 - nodejs-jwt-base-project
-
-// SOURCE 5
-// Dia 3 - nodejs-jwt-base-project - arquivo posts do controllers
