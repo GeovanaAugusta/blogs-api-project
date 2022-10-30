@@ -1,9 +1,6 @@
 const jwt = require('jsonwebtoken');
 const { categoriesService } = require('../services/categoriesService');
 
-// const secret = 'seusecretdetoken';
-// Erro no teste: throw Error('Seu `token` não consegue ser verificado a partir do segredo da variável de ambiente `JWT_SECRET`')
-
 const { JWT_SECRET } = process.env;
 // console.log(process.env);
 
