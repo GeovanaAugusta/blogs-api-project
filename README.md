@@ -19,7 +19,7 @@ Neste projeto foi desenvolvida uma API e um banco de dados para a produção de 
 
 - Clone o repositório
 
- `git clone git@github.com:tryber/sd-020-a-project-blogs-api.git`.
+ `git clone git@github.com:GeovanaAugusta/blogs-api-project.git`.
  
  - Entre na pasta do repositório que você acabou de clonar:
     
