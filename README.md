@@ -57,5 +57,9 @@ npm install
 npm run debug
 ```
 
+# Documentação da API
+
+- Em progresso.
+
 
 
