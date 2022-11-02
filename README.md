@@ -149,10 +149,134 @@ npm run debug
     }
 ```
 
-  + Response de validação ao tentar  cadastrar com o campo `displayName` menor que 8 caracteres, com um status http `400`:
+  + Response de validação ao tentar cadastrar com o campo `displayName` menor que 8 caracteres, com um status http `400`:
 
 ```json
     {
       "message": "\"displayName\" length must be at least 8 characters long"
     }
 ```
+
+ #### Listar todos os usuários
+```bash
+  GET /user
+```
+
++ Response se os usuários forem listados com sucesso, com um status http `200`:
+
+```json
+    [
+      {
+          "id": 1,
+          "displayName": "Lewis Hamilton",
+          "email": "lewishamilton@gmail.com",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
+      },
+
+      /* ... */
+    ]
+```
+
+  + Response de validação ao tentar listar todos os usuários se o token for inexistente, com um status http `401`:
+
+```json
+    {
+      "message": "Token not found"
+    }
+```
+
+  + Response de validação ao tentar listar todos os usuários se o token for inválido , com um status http `401`:
+
+```json
+    {
+      "message": "Expired or invalid token"
+    }
+```
+
+ #### Listar usuário por ID
+```bash
+  GET /user/:id
+```
+
++ Response se um usuário for listado com sucesso, com um status http `200`:
+
+```json
+      {
+          "id": 1,
+          "displayName": "Lewis Hamilton",
+          "email": "lewishamilton@gmail.com",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/1/18/Lewis_Hamilton_2016_Malaysia_2.jpg"
+      },
+```
+
+  + Response de validação ao tentar listar um usuário inexistente, com um status http `404`:
+
+```json
+    {
+      "message": "User does not exist"
+    }
+```
+
+  + Response de validação ao tentar listar um usuário se o token for inexistente, com um status http `401`:
+
+```json
+    {
+      "message": "Token not found"
+    }
+```
+
+  + Response de validação ao tentar listar um usuário se o token for inválido , com um status http `401`:
+
+```json
+    {
+      "message": "Expired or invalid token"
+    }
+```
+
+ #### Cadastrar uma nova categoria
+```bash
+  POST /categories
+```
+
++ Formato do corpo da Requisição:
+    + Body
+
+```json
+  {
+    "name": "Typescrypt"
+  }
+```
+
++ Response se a categoria for cadastrada com sucesso, com um status http `201`:
+
+```json
+    {
+      "id": 3,
+      "name": "Typescript"
+    }
+```
+
+  + Response de validação ao tentar cadastrar uma nova categoria com nome inexistente, com um status http `400`:
+
+```json
+    {
+      "message": "\"name\" is required"
+    }
+```
+
+  + Response de validação ao tentar cadastrar uma nova categoria se o token for inexistente, com um status http `401`:
+
+```json
+    {
+      "message": "Token not found"
+    }
+```
+
+  + Response de validação ao tentar cadastrar uma nova categoria se o token for inválido , com um status http `401`:
+
+```json
+    {
+      "message": "Expired or invalid token"
+    }
+```
+
