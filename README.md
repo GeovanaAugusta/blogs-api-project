@@ -280,3 +280,41 @@ npm run debug
     }
 ```
 
+ #### Listar todas as categorias
+```bash
+  GET /categories
+```
+
++ Response se as categorias forem listadas com sucesso, com um status http `200`:
+
+```json
+ [
+      {
+          "id": 1,
+          "name": "Inovação"
+      },
+      {
+          "id": 2,
+          "name": "Escola"
+      },
+
+      /* ... */
+    ]
+```
+
+  + Response de validação ao tentar listar todas as categorias se o token for inexistente, com um status http `401`:
+
+```json
+    {
+      "message": "Token not found"
+    }
+```
+
+  + Response de validação ao tentar listar todos as categorias se o token for inválido , com um status http `401`:
+
+```json
+    {
+      "message": "Expired or invalid token"
+    }
+```
+
