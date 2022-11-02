@@ -59,7 +59,48 @@ npm run debug
 
 # Documentação da API
 
-- Em progresso.
+### Login
+
+#### Fazer login
+```bash
+  POST /login
+```
+
++ Formato do corpo da Requisição:
+    + Body
+
+```json
+  {
+    "email": "lewishamilton@gmail.com",
+    "password": "123456"
+  }
+  ```
+
+
++ Response se o login for feito com sucesso, com um status http `200`:
+
+```json
+            {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiYWRtaW5AYWRtaW4uY29tIiwiaWF0IjoxNjY0NDY2NDE2LCJleHAiOjE2NjUyNDQwMTZ9.6F-bmiupvvyGZUsyzZAx8Mw7FE16ayDlU9ev0J9TtVA"
+            }
+```
+  
+  + Response de validação ao realizar um login com um usuário ou e-mail que não existe, com um status http `400`:
+
+```json
+    {
+      "message": "Invalid fields"
+    }
+```
+  
+  + Response de validação ao realizar um login sem todos os campos devidamente preenchidos, com um status http `400`:
+  
+ ```json
+    {
+      "message": "Some required fields are missing"
+    }
+ ```
+
 
 
 
