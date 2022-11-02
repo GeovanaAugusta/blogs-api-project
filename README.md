@@ -76,7 +76,6 @@ npm run debug
   }
   ```
 
-
 + Response se o login for feito com sucesso, com um status http `200`:
 
 ```json
@@ -85,7 +84,7 @@ npm run debug
             }
 ```
   
-  + Response de validação ao realizar um login com um usuário ou e-mail que não existe, com um status http `400`:
+  + Response de validação ao tentar realizar um login com um usuário ou e-mail que não existe, com um status http `400`:
 
 ```json
     {
@@ -93,14 +92,67 @@ npm run debug
     }
 ```
   
-  + Response de validação ao realizar um login sem todos os campos devidamente preenchidos, com um status http `400`:
+  + Response de validação ao tentar realizar um login sem todos os campos devidamente preenchidos, com um status http `400`:
   
  ```json
     {
       "message": "Some required fields are missing"
     }
  ```
+ 
+ #### Cadastrar novo usuário
+```bash
+  POST /user
+```
 
++ Formato do corpo da Requisição:
+    + Body
 
+```json
+  {
+    "displayName": "Brett Wiltshire",
+    "email": "brett@email.com",
+    "password": "123456",
+    "image": "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/brett.png"
+  }
+```
 
++ Response se o usuário for cadastrado com sucesso, com um status http `201`:
 
+```json
+            {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjoiYWRtaW5AYWRtaW4uY29tIiwiaWF0IjoxNjY0NDY2NDE2LCJleHAiOjE2NjUyNDQwMTZ9.6F-bmiupvvyGZUsyzZAx8Mw7FE16ayDlU9ev0J9TtVA"
+            }
+```
+  
+  + Response de validação ao tentar cadastrar com um email já existente, com um status http `409`:
+
+```json
+    {
+      "message": "User already registered"
+    }
+```
+
+  + Response de validação ao tentar cadastrar com o campo `email` com formato inválido `<email@email.com>`, com um status http `400`:
+
+```json
+    {
+      "message": "\"email\" must be a valid email"
+    }
+```
+
+  + Response de validação ao tentar cadastrar com o campo `password` menor que 6 caracteres, com um status http `400`:
+
+```json
+    {
+      "message": "\"password\" length must be at least 6 characters long"
+    }
+```
+
+  + Response de validação ao tentar  cadastrar com o campo `displayName` menor que 8 caracteres, com um status http `400`:
+
+```json
+    {
+      "message": "\"displayName\" length must be at least 8 characters long"
+    }
+```
