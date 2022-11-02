@@ -100,7 +100,7 @@ npm run debug
     }
  ```
  
- #### Cadastrar novo usuário
+#### Cadastrar novo usuário
 ```bash
   POST /user
 ```
@@ -157,7 +157,7 @@ npm run debug
     }
 ```
 
- #### Listar todos os usuários
+#### Listar todos os usuários
 ```bash
   GET /user
 ```
@@ -193,7 +193,7 @@ npm run debug
     }
 ```
 
- #### Listar usuário por ID
+#### Listar usuário por ID
 ```bash
   GET /user/:id
 ```
@@ -233,7 +233,7 @@ npm run debug
     }
 ```
 
- #### Cadastrar uma nova categoria
+#### Cadastrar uma nova categoria
 ```bash
   POST /categories
 ```
@@ -280,7 +280,7 @@ npm run debug
     }
 ```
 
- #### Listar todas as categorias
+#### Listar todas as categorias
 ```bash
   GET /categories
 ```
@@ -318,7 +318,7 @@ npm run debug
     }
 ```
 
- ####  Adicionar um novo blogpost e vinculá-lo às categorias
+####  Adicionar um novo blogpost e vinculá-lo às categorias
 ```bash
   POST /post
 ```
@@ -379,7 +379,7 @@ npm run debug
     }
 ```
 
- #### Listar todos os blogpost
+#### Listar todos os blogpost
 ```bash
   GET /post
 ```
@@ -429,7 +429,7 @@ npm run debug
     }
 ```
 
- #### Listar blogpost por ID
+#### Listar blogpost por ID
 ```bash
   GET /post/:id
 ```
@@ -483,7 +483,7 @@ npm run debug
     }
 ```
 
- #### Alterar um blogpost por ID
+#### Alterar um blogpost por ID
 ```bash
   PUT /post/:id
 ```
@@ -498,7 +498,7 @@ npm run debug
   }
 ```
 
-+ Response se o post for editado com sucesso, com um status http `200`:
+  + Response se o post for editado com sucesso, com um status http `200`:
 
 ```json
  {
@@ -559,7 +559,7 @@ npm run debug
     }
 ```
 
- #### Deletar um blogpost por ID
+#### Deletar um blogpost por ID
 ```bash
   DELETE /post/:id
 ```
